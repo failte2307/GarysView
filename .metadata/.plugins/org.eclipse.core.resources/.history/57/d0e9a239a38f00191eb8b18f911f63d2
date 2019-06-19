@@ -1,0 +1,21 @@
+package com.smbcgroup.failte.validator;
+
+import javax.persistence.Column;
+
+/**
+ * @author Mark
+ * 15 Jun 2019
+ */
+public class EmployeeValidator {
+	
+	private int employeeId;
+	
+	private int DeparmentId;
+    
+	private String employeeName;
+	
+	private String telephoneNo;
+	
+	private String email;
+
+}

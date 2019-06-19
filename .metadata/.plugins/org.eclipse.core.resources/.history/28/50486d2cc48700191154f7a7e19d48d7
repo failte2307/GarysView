@@ -1,0 +1,34 @@
+package com.smbcgroup.failte.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * @author Mark
+ * 5 Jun 2019
+ */
+
+@Entity
+@Table(name="APPOINTMENT")
+public class Appointment {
+	
+
+	@Id
+	@Column(name = "Appointment_Id")
+	private int appointmentId;
+	
+	@Column(name = "Employee_Id")
+	private int employeeId;
+	
+	@Column(name = "Visitor_Id")
+	private String visitorId;
+	
+	@Column(name = "Sign_In")
+	private String signIn;
+	
+	@Column(name = "Sign_Out")
+	private String signOut;
+
+}

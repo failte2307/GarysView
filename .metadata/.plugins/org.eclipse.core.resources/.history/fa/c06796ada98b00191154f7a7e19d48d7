@@ -1,0 +1,19 @@
+package com.smbcgroup.failte.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.smbcgroup.failte.appointment.service.AppointmentService;
+
+
+/**
+ * @author Mark
+ * 10 Jun 2019
+ */
+public class AppointmentController {
+	private final static Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+	
+	@Autowired AppointmentService appointmentService;
+
+}

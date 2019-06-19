@@ -1,0 +1,66 @@
+package com.smbcgroup;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+
+import com.smbcgroup.failte.entity.Employee;
+import com.smbcgroup.failte.dto.EmployeeDTO;
+import com.smbcgroup.failte.entity.Appointment;
+/**
+ * @author Mark
+ * 22 May 2019
+ */
+public class TestOpenJpa {
+	
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("failtePersistenceUnit");
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	public EntityManager getEntityManager() {
+		return emf.createEntityManager();
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	public List<Employee> getEmployees(){
+		EntityManager em = getEntityManager();
+		List<Employee> employeeList = em.createQuery("Select e from Employee e", Employee.class).getResultList();
+		System.out.println(employeeList);
+		return employeeList;
+		
+		
+		
+		
+	
+	}
+	
+	
+	public List<Appointment> getAppointments(){
+		EntityManager em = getEntityManager();
+		List<Appointment> appointmentList = em.createQuery("Select e from Appointment e", Appointment.class).getResultList();
+		System.out.println(appointmentList);
+		return appointmentList;
+	}
+	
+	public void createEmployee(){
+		EntityManager em = getEntityManager();
+		EmployeeDTO test = new EmployeeDTO(6,1,"Paul","Test","Test");
+		Employee employee = new Employee(test);
+		em.persist(employee);
+	}
+	
+	public static void main (String args[]) {
+		TestOpenJpa bla = new TestOpenJpa();
+		bla.getEmployees();
+		bla.getAppointments();
+		bla.createEmployee();
+	
+	}
+}

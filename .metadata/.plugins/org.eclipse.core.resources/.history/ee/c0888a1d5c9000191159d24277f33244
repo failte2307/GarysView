@@ -1,0 +1,47 @@
+package com.smbcgroup.failte.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.smbcgroup.failte.dao.FailteDAO;
+import com.smbcgroup.failte.dto.EmployeeDTO;
+import com.smbcgroup.failte.service.FailteService;
+
+
+/**
+ * @author Mark
+ * 22 May 2019
+ */
+public class FailteServiceImpl implements FailteService{
+	
+	@Autowired 
+	private FailteDAO failteDAO;
+
+	public List<EmployeeDTO> getEmployee(){
+		return failteDAO.getEmployees();
+	}
+
+	public FailteDAO getFailteDAO() {
+		return failteDAO;
+	}
+
+	public void setFailteDAO(FailteDAO failteDAO) {
+		this.failteDAO = failteDAO;
+	}
+
+	@Override
+	public List<EmployeeDTO> getSearchedEmployees(EmployeeQuery query) {
+		return failteDAO.getSearchedEmployees(employeeName);
+	}
+
+	@Override
+	public void createEmployee() {
+		 failteDAO.createEmployee();
+		
+	}
+	
+	
+	
+	
+}

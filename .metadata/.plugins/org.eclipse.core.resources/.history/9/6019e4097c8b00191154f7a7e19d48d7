@@ -1,0 +1,6 @@
+package com.smbcgroup.failte.appointment.daoimpl;
+ 10 Jun 2019
+ 
+public class AppointmentDAOImpl {
+
+}

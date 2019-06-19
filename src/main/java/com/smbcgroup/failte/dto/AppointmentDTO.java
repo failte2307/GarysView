@@ -1,0 +1,80 @@
+package com.smbcgroup.failte.dto;
+
+
+import com.smbcgroup.failte.entity.Appointment;
+
+
+ 
+/**
+ * @author Mark
+ * 5 Jun 2019
+ */
+
+
+public class AppointmentDTO {
+	 
+		public int getAppointmentId() {
+		return appointmentId;
+	}
+
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public String getVisitorId() {
+		return visitorId;
+	}
+
+	public void setVisitorId(String visitorId) {
+		this.visitorId = visitorId;
+	}
+
+	public String getSignIn() {
+		return signIn;
+	}
+
+	public void setSignIn(String signIn) {
+		this.signIn = signIn;
+	}
+
+	public String getSignOut() {
+		return signOut;
+	}
+
+	public void setSignOut(String signOut) {
+		this.signOut = signOut;
+	}
+
+		private int appointmentId;
+		
+		private int employeeId;
+		
+		private String visitorId;
+		
+		private String signIn;
+		
+		private String signOut;
+		
+		
+		public AppointmentDTO() {
+			
+			
+		}
+		
+		public AppointmentDTO(Appointment entity) {
+			this.appointmentId = entity.getAppointmentId();
+			this.employeeId = entity.getEmployeeId();
+			this.visitorId = entity.getVisitorId();
+			this.signIn = entity.getSignIn();
+			this.signOut = entity.getSignOut();
+		}
+
+}

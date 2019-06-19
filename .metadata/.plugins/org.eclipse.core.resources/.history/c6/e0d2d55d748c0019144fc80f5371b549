@@ -1,0 +1,94 @@
+package com.smbcgroup.failte.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.smbcgroup.failte.dto.AppointmentDTO;
+
+
+/**
+ * @author Mark
+ * 5 Jun 2019
+ */
+
+
+@Entity
+@Table(name="APPOINTMENT")
+public class Appointment {
+	
+
+	@Id
+	@Column(name = "Appointment_Id")
+	private int appointmentId;
+	
+	@Column(name = "Employee_Id")
+	private int employeeId;
+	
+	@Column(name = "Visitor_Id")
+	private String visitorId;
+	
+	@Column(name = "Sign_In")
+	private String signIn;
+	
+	@Column(name = "Sign_Out")
+	private String signOut;
+
+	public int getAppointmentId() {
+		return appointmentId;
+	}
+
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public String getVisitorId() {
+		return visitorId;
+	}
+
+	public void setVisitorId(String visitorId) {
+		this.visitorId = visitorId;
+	}
+
+	public String getSignIn() {
+		return signIn;
+	}
+
+	public void setSignIn(String signIn) {
+		this.signIn = signIn;
+	}
+
+	public String getSignOut() {
+		return signOut;
+	}
+
+	public void setSignOut(String signOut) {
+		this.signOut = signOut;
+	}
+	
+	public Appointment() {
+		
+	}
+	
+	public Appointment(AppointmentDTO dto) {
+	
+		    this.appointmentId = dto.getAppointmentId();
+			this.employeeId = dto.getEmployeeId();
+			this.visitorId = dto.getVisitorId();
+			this.signIn = dto.getSignIn();
+			this.signOut = dto.getSignOut();
+	
+		
+	}
+	
+
+}

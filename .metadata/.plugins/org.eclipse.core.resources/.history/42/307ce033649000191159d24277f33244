@@ -1,0 +1,33 @@
+package com.smbcgroup.failte.validator;
+
+import javax.persistence.Column;
+
+import com.smbcgroup.failte.exception.ValidatorException;
+import com.smbcgroup.failte.validatorinterface.Validator;
+
+/**
+ * @author Mark
+ * 15 Jun 2019
+ */
+public class EmployeeNameValidator implements Validator{
+	
+    
+	private String employeeName;
+
+	
+	public EmployeeNameValidator(String employeeName) {
+		this.employeeName = employeeName;
+		
+	}
+	
+	
+	public boolean validate() throws ValidatorException {
+        if(employeeName.length() != 1 || employeeName.matches("[a-zA-Z ]*\\d+.*")) {       	
+       return true;
+        
+        }
+        else throw new ValidatorException("Employee Name " + employeeName + 
+				" must be greater than 4 characters .");
+	}
+
+}

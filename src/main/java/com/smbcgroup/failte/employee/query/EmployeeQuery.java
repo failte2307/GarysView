@@ -1,0 +1,13 @@
+package com.smbcgroup.failte.employee.query;
+ 
+ 
+/**
+ * @author Mark
+ * 5 Jun 2019
+ */
+public class EmployeeQuery {
+	
+	
+	
+
+}

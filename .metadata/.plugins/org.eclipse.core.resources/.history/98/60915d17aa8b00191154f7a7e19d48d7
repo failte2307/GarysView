@@ -1,0 +1,28 @@
+package com.smbcgroup.failte.appointment.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.smbcgroup.failte.appointment.dao.AppointmentDAO;
+import com.smbcgroup.failte.appointment.service.AppointmentService;
+import com.smbcgroup.failte.dto.AppointmentDTO;;
+/**
+ * @author Mark
+ * 10 Jun 2019
+ */
+public class AppointmentServiceImpl implements AppointmentService {
+
+	
+
+	@Autowired 
+	private AppointmentDAO appointmentDAO;
+	
+	
+	@Override
+	public List<AppointmentDTO> getEmployeesAppointments(int employeeId) {
+		return appointmentDAO.getEmployeesApointments(employeeId);
+	}
+
+	
+}

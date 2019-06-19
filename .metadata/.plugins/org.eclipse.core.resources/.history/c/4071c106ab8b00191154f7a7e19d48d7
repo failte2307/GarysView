@@ -1,0 +1,26 @@
+package com.smbcgroup.failte.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.smbcgroup.failte.appointment.service.AppointmentService;
+
+
+/**
+ * @author Mark
+ * 10 Jun 2019
+ */
+public class AppointmentController {
+	private final static Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+	
+	@Autowired AppointmentService appointmentService;
+
+	@RequestMapping(method =  RequestMethod.GET, produces="application/json", value="/employee/{employeeid}/appointments")
+	@ResponseBody{
+		
+	}
+}

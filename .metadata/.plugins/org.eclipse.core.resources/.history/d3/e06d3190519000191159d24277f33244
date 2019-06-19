@@ -1,0 +1,14 @@
+package com.smbcgroup.failte.exception;
+
+ 
+/**
+ * @author Mark
+ * 16 Jun 2019
+ */
+public class EmployeeQueryException extends RuntimeException{
+	private static final long serialVersionUID= -4167848436423641L;
+
+	public EmployeeQueryException(String fieldName, Throwable e) {
+		super("Field " + fieldName +" is invalid " + e.getMessage(), e);
+	}
+}

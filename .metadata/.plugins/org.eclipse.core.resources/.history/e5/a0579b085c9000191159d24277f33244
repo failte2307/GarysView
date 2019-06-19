@@ -1,0 +1,17 @@
+package com.smbcgroup.failte.service;
+
+
+import java.util.List;
+
+import com.smbcgroup.failte.dto.EmployeeDTO;
+
+/**
+ * @author Mark
+ * 22 May 2019
+ */
+public interface FailteService {
+
+	public List<EmployeeDTO> getEmployee();
+	public List<EmployeeDTO> getSearchedEmployees(String employeeName);
+	public void createEmployee();
+}

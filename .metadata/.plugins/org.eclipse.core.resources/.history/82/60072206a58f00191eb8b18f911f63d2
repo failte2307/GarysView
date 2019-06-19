@@ -1,0 +1,37 @@
+package com.smbcgroup.failte.validator;
+
+import javax.persistence.Column;
+
+/**
+ * @author Mark
+ * 15 Jun 2019
+ */
+public class EmployeeValidator {
+	
+    
+	private String employeeName;
+	
+	private String telephoneNo;
+	
+	private String email;
+	
+	public EmployeeValidator(String employeeName, String telephoneNo, String email) {
+		this.employeeName = employeeName;
+		this.telephoneNo = telephoneNo;	
+		this.email = email;
+	}
+	
+	
+	public boolean validate() throws ValidatorException {
+        if(employeeName.length() != 0 || employeeName.isEmpty()) {       	
+        	if(telephoneNo.length() != 0 || telephoneNo.isEmpty()) {
+        		if(email.length()!=0 || email.isEmpty()) {
+        			return true;
+        		}
+        		else throw new ValidatorException("Email " + email + 
+        				" is not a valid email please. The email must contain @ symbol and have more characters then xero")
+        	}
+        }
+	}
+
+}

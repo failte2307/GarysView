@@ -1,0 +1,95 @@
+package com.smbcgroup.failte.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.smbcgroup.failte.dto.EmployeeDTO;
+import com.smbcgroup.failte.exception.EmployeeQueryException;
+import com.smbcgroup.failte.query.EmployeeQuery;
+import com.smbcgroup.failte.service.FailteService;
+import com.smbcgroup.object.EmployeeTest;
+
+
+/**
+ * @author Mark
+ * 22 May 2019
+ */
+@Controller
+public class FailteController {
+	private final static Logger logger = LoggerFactory.getLogger(FailteController.class);
+	
+	@Autowired FailteService failteService;
+
+
+	@RequestMapping(method =  RequestMethod.GET)
+	public String getHomepage() {
+		return "index";
+	}
+	
+	@RequestMapping(method =  RequestMethod.GET, produces="application/json", value="/getemployee")
+	@ResponseBody	
+	public List<EmployeeTest> getAllEmployee(){
+		
+		EmployeeTest bla = new EmployeeTest();
+		bla.setName("Mark");
+		List <EmployeeTest> employeeList = new ArrayList<>();
+		employeeList.add(bla);
+		return employeeList;
+	}
+	
+	@RequestMapping(method =  RequestMethod.GET, produces="application/json", value="/employee")
+	@ResponseBody
+	public List<EmployeeDTO> getEmployee(){
+		return failteService.getEmployee();
+		
+	}
+	
+	@RequestMapping(method =  RequestMethod.GET, produces="application/json", value="search/employee/{employeeName}")
+	@ResponseBody
+	public List<EmployeeDTO> getSearchedEmployees(@PathVariable("employeeName") String employeeName){
+		try {
+		EmployeeQuery query = new EmployeeQuery.Builder().employeeName(employeeName).build();
+		logger.info("getting employee name from search query " + query.getEmployeeName());
+		List<EmployeeDTO> employeeList = null;
+		employeeList = failteService.getSearchedEmployees(query);
+		if(employeeList == null || employeeList.isEmpty()) {
+		logger.info("An empty employeeList was returned");	
+		}
+		return employeeList;
+		
+		}
+		catch (EmployeeQueryException e) {
+			logger.error("Error occured relating to following params" + e.getMessage());
+			HttpHeaders headers = new HttpHeaders();
+			headers.set("Error during creation of query",e.getMessage());
+			return employeeList(headers)
+		}
+		catch(Exception e){
+			logger.error("Unxpected Error occured getting employee ", e);
+		}
+		return null;
+		
+	}
+	
+	@RequestMapping(method =  RequestMethod.POST, produces="application/json", value="createemployee/")
+	@ResponseBody
+	public void createEmployee() {
+		
+		//	EmployeeQuery query = new EmployeeQuery.Builder().employeeName(employee.getEmployeeName()).build();
+		//	logger.info("creating new employee with the following params " + query.toString());
+			failteService.createEmployee();
+			
+		
+	}
+
+}

@@ -1,0 +1,34 @@
+package com.smbcgroup.failte.validator;
+
+import javax.persistence.Column;
+
+/**
+ * @author Mark
+ * 15 Jun 2019
+ */
+public class EmployeeValidator {
+	
+    
+	private String employeeName;
+	
+	private String telephoneNo;
+	
+	private String email;
+	
+	public EmployeeValidator(int employeeId, int departmentId, String employeeName, String telephoneNo, String email) {
+		this.employeeId = employeeId;
+		this.deparmentId = departmentId;
+		this.employeeName = employeeName;
+		this.telephoneNo = telephoneNo;	
+		this.email = email;
+	}
+	
+	
+	public boolean validate() throws ValidatorException {
+		if(employeeId = null) {
+			if(departmentId)
+				
+		}
+	}
+
+}

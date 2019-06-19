@@ -1,0 +1,6 @@
+package com.smbcgroup.failte.exception;
+ 16 Jun 2019
+ 
+public class EmployeeQueryException {
+
+}

@@ -1,0 +1,55 @@
+package com.smbcgroup.failte.controller;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.smbcgroup.failte.service.AppointmentService;
+import com.smbcgroup.failte.dto.AppointmentDTO;
+
+
+/**
+ * @author Mark
+ * 10 Jun 2019
+ */
+@Controller
+public class AppointmentController {
+	private final static Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+	
+	@Autowired AppointmentService appointmentService;
+
+	public AppointmentService getAppointmentService() {
+		return appointmentService;
+	}
+
+
+	public void setAppointmentService(AppointmentService appointmentService) {
+		this.appointmentService = appointmentService;
+	}
+
+
+	@RequestMapping(method =  RequestMethod.GET, produces="application/json", value="employee/{employeeId}/appointments")
+	@ResponseBody
+	public List<AppointmentDTO> getEmployeesAppointments(@PathVariable("employeeId") int employeeId){
+		try {
+			logger.info("getting appointment info with params " + employeeId);
+			List<AppointmentDTO> appointmentList = null;
+		appointmentList = appointmentService.getEmployeesAppointments(employeeId);
+			if(appointmentList == null || appointmentList.isEmpty()) {
+				logger.info("There are no appointmenets for today");
+			}
+			return appointmentList;
+		}catch(Exception e) {
+			logger.error("Unexpected error occured getting appointments", e);
+		}
+		return null;
+		
+	}
+}

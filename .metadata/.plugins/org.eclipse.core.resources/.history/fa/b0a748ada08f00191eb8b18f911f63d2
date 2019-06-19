@@ -1,0 +1,63 @@
+package com.smbcgroup.failte.daoimpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.smbcgroup.failte.appointment.dao.AppointmentDAO;
+import com.smbcgroup.failte.daoimpl.FailteDAOImpl;
+import com.smbcgroup.failte.dto.AppointmentDTO;
+import com.smbcgroup.failte.entity.Appointment;
+
+/**
+ * @author Mark
+ * 10 Jun 2019
+ */
+public class AppointmentDAOImpl implements AppointmentDAO {
+	
+private final static Logger logger = LoggerFactory.getLogger(FailteDAOImpl.class);
+	
+	@PersistenceUnit
+	private EntityManagerFactory entityManagerFactory;
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
+	
+	
+	public List<AppointmentDTO> getEmployeesAppointments(int employeeId){
+		List <AppointmentDTO> appointmentList = new ArrayList<AppointmentDTO>();
+		logger.info("Querying database with params " + employeeId);
+		List<Appointment> appointmentQuery = entityManager.createQuery("Select e from Appointment e WHERE e.employeeId = :employeeId", Appointment.class).setParameter("employeeId",employeeId).getResultList();
+
+		for(Appointment i : appointmentQuery) {
+			appointmentList.add(new AppointmentDTO(i));
+		}
+		return appointmentList;
+		}
+
+	
+}

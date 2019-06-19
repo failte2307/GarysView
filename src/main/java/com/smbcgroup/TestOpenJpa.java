@@ -3,21 +3,26 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 
-import com.smbcgroup.entity.Employee;
+import com.smbcgroup.failte.entity.Employee;
+import com.smbcgroup.failte.dto.EmployeeDTO;
+import com.smbcgroup.failte.entity.Appointment;
+/**
+ * @author Mark
+ * 22 May 2019
+ */
 public class TestOpenJpa {
 	
-
-	@PersistenceUnit
-	private EntityManagerFactory entityManagerFactory;
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("failtePersistenceUnit");
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	public EntityManager getEntityManager() {
-		return entityManager;
+		return emf.createEntityManager();
 	}
 
 	public void setEntityManager(EntityManager entityManager) {
@@ -25,10 +30,40 @@ public class TestOpenJpa {
 	}
 
 	public List<Employee> getEmployees(){
-		List<Employee> employeeList = entityManager.createQuery("Select e from Employee e").getResultList();
+		EntityManager em = getEntityManager();
+		List<Employee> employeeList = em.createQuery("Select e from Employee e", Employee.class).getResultList();
 		System.out.println(employeeList);
 		return employeeList;
 		
+		
+		
+		
+	
+	}
+	
+	
+	public List<Appointment> getAppointments(){
+		EntityManager em = getEntityManager();
+		List<Appointment> appointmentList = em.createQuery("Select e from Appointment e", Appointment.class).getResultList();
+		System.out.println(appointmentList);
+		return appointmentList;
+	}
+	
+	public void createEmployee(){
+		EntityManager em = getEntityManager();
+		EmployeeDTO test = new EmployeeDTO(1,"Paul","Test","Test");
+		Employee employee = new Employee(test);
+		em.getTransaction().begin();
+		em.persist(employee);
+		em.getTransaction().commit();
+	
+	}
+	
+	public static void main (String args[]) {
+		TestOpenJpa bla = new TestOpenJpa();
+		bla.getEmployees();
+		bla.getAppointments();
+		bla.createEmployee();
 	
 	}
 }

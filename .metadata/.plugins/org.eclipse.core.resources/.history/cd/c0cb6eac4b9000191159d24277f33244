@@ -1,0 +1,41 @@
+package com.smbcgroup.failte.validator;
+
+import javax.persistence.Column;
+
+import com.smbcgroup.failte.exception.ValidatorException;
+import com.smbcgroup.failte.validatorinterface.Validator;
+
+/**
+ * @author Mark
+ * 15 Jun 2019
+ */
+public class EmployeeValidator implements Validator{
+	
+    
+	private String employeeName;
+
+	
+	public EmployeeValidator(String employeeName, String telephoneNo, String email) {
+		this.employeeName = employeeName;
+		this.telephoneNo = telephoneNo;	
+		this.email = email;
+	}
+	
+	
+	public boolean validate() throws ValidatorException {
+        if(employeeName.length() != 0 || employeeName.isEmpty()) {       	
+        	if(telephoneNo.length() < 8) {
+        		if(email.length()!=0 || email.isEmpty()) {
+        			return true;
+        		}
+        		else throw new ValidatorException("Email " + email + 
+        				" is not a valid email. The email must contain @ symbol and have more characters then zero");
+        	}
+        	else throw new ValidatorException("Telephone number " + telephoneNo + 
+    				" is not a telephone number please. The number must have more characters than 8");
+        }
+        else throw new ValidatorException("Employee Name " + employeeName + 
+				" is not a valid Employee name .");
+	}
+
+}

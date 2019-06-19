@@ -1,0 +1,16 @@
+package com.smbcgroup.failte.dao;
+
+import java.util.List;
+
+import com.smbcgroup.failte.dto.AppointmentDTO;
+
+/**
+ * @author Mark
+ * 5 Jun 2019
+ */
+
+public interface AppointmentDAO {
+
+	public List<AppointmentDTO> getEmployeesAppointments(int employeeId);
+
+}

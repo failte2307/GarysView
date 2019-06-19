@@ -1,0 +1,10 @@
+package com.smbcgroup.failte.entity;
+
+ 
+/**
+ * @author Mark
+ * 5 Jun 2019
+ */
+public class Appointment {
+
+}

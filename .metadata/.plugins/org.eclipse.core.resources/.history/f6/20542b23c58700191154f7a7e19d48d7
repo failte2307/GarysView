@@ -1,0 +1,6 @@
+package com.smbcgroup.failte.dto;
+ 5 Jun 2019
+ 
+public class AppointmentDTO {
+
+}
